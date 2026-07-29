@@ -65,7 +65,8 @@ function calculate() {
     if (buyPrice < 0) {
         buyPrice = 0;
     }
-        // ===========================
+
+    // ===========================
     // DISPLAY RESULTS
     // ===========================
 
@@ -95,8 +96,7 @@ function calculate() {
 
     document.getElementById("buyPrice").innerHTML =
         "₹" + buyPrice.toFixed(2);
-
-    // ===========================
+        // ===========================
     // NEGOTIATION CALCULATION
     // ===========================
 
@@ -132,16 +132,13 @@ function calculate() {
         }
 
         let decision = "";
-                // ===========================
-        // DECISION ENGINE
-        // ===========================
 
         if (askingPrice <= buyPrice) {
 
             decision =
                 "🟢 <b>BUY</b><br><br>" +
                 "Farmer Asking : ₹" + askingPrice.toFixed(2) + "<br>" +
-                "Recommended Price : ₹" + buyPrice.toFixed(2) + "<br>" +
+                "Recommended Buying Price : ₹" + buyPrice.toFixed(2) + "<br>" +
                 "Expected Profit : ₹" + actualProfitPerTon.toFixed(0) + " / Ton<br><br>" +
                 "✅ Good purchase. You will achieve your target profit.";
 
@@ -156,26 +153,11 @@ function calculate() {
 
             decision =
                 "🟡 <b>NEGOTIATE</b><br><br>" +
-
                 "Farmer Asking : ₹" + askingPrice.toFixed(2) + "<br>" +
-
-                "Start Negotiation : <b>₹" +
-                suggestedOffer.toFixed(2) +
-                "</b><br>" +
-
-                "Target Settlement : <b>₹" +
-                buyPrice.toFixed(2) +
-                "</b><br>" +
-
-                "Reduce by : <b>₹" +
-                difference.toFixed(2) +
-                "</b> per coconut.<br><br>" +
-
-                "If you pay ₹" +
-                askingPrice.toFixed(2) +
-                ", expected profit will be <b>₹" +
-                actualProfitPerTon.toFixed(0) +
-                " / Ton</b>.";
+                "Start Negotiation : <b>₹" + suggestedOffer.toFixed(2) + "</b><br>" +
+                "Target Settlement : <b>₹" + buyPrice.toFixed(2) + "</b><br>" +
+                "Reduce by : <b>₹" + difference.toFixed(2) + "</b> per coconut<br><br>" +
+                "Expected Profit : <b>₹" + actualProfitPerTon.toFixed(0) + " / Ton</b>";
 
         }
         else {
@@ -188,34 +170,17 @@ function calculate() {
 
             decision =
                 "🔴 <b>DON'T BUY</b><br><br>" +
-
-                "Farmer Asking : ₹" +
-                askingPrice.toFixed(2) +
-                "<br>" +
-
-                "Start Negotiation : <b>₹" +
-                suggestedOffer.toFixed(2) +
-                "</b><br>" +
-
-                "Maximum Safe Price : <b>₹" +
-                buyPrice.toFixed(2) +
-                "</b><br>" +
-
-                "Need to reduce by <b>₹" +
-                difference.toFixed(2) +
-                "</b> per coconut.<br><br>" +
-
-                "At ₹" +
-                askingPrice.toFixed(2) +
-                " you will incur a loss of <b>₹" +
-                Math.abs(actualProfitPerTon).toFixed(0) +
-                " / Ton</b>.";
+                "Farmer Asking : ₹" + askingPrice.toFixed(2) + "<br>" +
+                "Maximum Safe Price : <b>₹" + buyPrice.toFixed(2) + "</b><br>" +
+                "Reduce by : <b>₹" + difference.toFixed(2) + "</b> per coconut<br><br>" +
+                "Expected Loss : <b>₹" + Math.abs(actualProfitPerTon).toFixed(0) + " / Ton</b>";
 
         }
 
         document.getElementById("decision").innerHTML = decision;
-            }
-    else {
+
+    }
+        else {
 
         document.getElementById("farmerPrice").innerHTML = "-";
         document.getElementById("actualProfit").innerHTML = "-";
@@ -235,16 +200,29 @@ function calculate() {
         startOffer = 0;
     }
 
+    // Update Negotiation Guide Cards
+    if (document.getElementById("startOffer")) {
+        document.getElementById("startOffer").innerHTML =
+            "₹" + startOffer.toFixed(2);
+    }
+
+    if (document.getElementById("counterOffer")) {
+        document.getElementById("counterOffer").innerHTML =
+            "₹" + buyPrice.toFixed(2);
+    }
+
+    if (document.getElementById("maxPrice")) {
+        document.getElementById("maxPrice").innerHTML =
+            "₹" + buyPrice.toFixed(2);
+    }
+
+    // Append Negotiation Guide to Decision Box
     document.getElementById("decision").innerHTML +=
         "<hr>" +
         "<b>Negotiation Guide</b><br><br>" +
-
         "💬 Start From : <b>₹" + startOffer.toFixed(2) + "</b><br>" +
-
         "🎯 Target Settlement : <b>₹" + buyPrice.toFixed(2) + "</b><br>" +
-
         "🚫 Never Pay Above : <b>₹" + buyPrice.toFixed(2) + "</b><br><br>" +
-
         "✔️ Paying below this price increases your profit.<br>" +
         "❌ Paying above this price reduces your target profit.";
 
