@@ -1,3 +1,7 @@
+/* ==========================================
+   VR Velaan Procurement Assistant
+========================================== */
+
 *{
     margin:0;
     padding:0;
@@ -5,61 +9,81 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#e8f5e9;
-    padding:20px;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#eef6ee;
+    padding:15px;
+    color:#333;
 }
 
 .container{
-    max-width:500px;
+    max-width:550px;
     margin:auto;
     background:#ffffff;
-    border-radius:15px;
+    border-radius:18px;
     padding:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
+
+/* ===========================
+   HEADINGS
+=========================== */
 
 h1{
     text-align:center;
     color:#1b5e20;
+    font-size:34px;
     margin-bottom:5px;
 }
 
 h2{
     text-align:center;
-    color:#2e7d32;
-    margin-bottom:20px;
+    color:#388e3c;
+    margin-bottom:25px;
+    font-size:22px;
 }
+
+h3{
+    text-align:center;
+    color:#2e7d32;
+    margin-bottom:15px;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
 
 label{
     display:block;
     margin-top:18px;
     margin-bottom:6px;
     font-weight:bold;
-    color:#333;
 }
 
 input{
     width:100%;
     padding:14px;
     font-size:18px;
-    border:1px solid #ccc;
-    border-radius:8px;
+    border:1px solid #cccccc;
+    border-radius:10px;
 }
 
 input:focus{
     outline:none;
-    border-color:#2e7d32;
+    border:2px solid #2e7d32;
 }
+
+/* ===========================
+   BUTTON
+=========================== */
 
 button{
     width:100%;
-    margin-top:25px;
+    margin-top:22px;
     padding:16px;
-    background:#2e7d32;
-    color:white;
     border:none;
     border-radius:10px;
+    background:#2e7d32;
+    color:white;
     font-size:20px;
     font-weight:bold;
     cursor:pointer;
@@ -69,102 +93,183 @@ button:hover{
     background:#1b5e20;
 }
 
-.result{
-    margin-top:30px;
-}
+/* ===========================
+   BUY PRICE CARD
+=========================== */
 
 .buy-box{
+
+    margin-top:25px;
     background:#2e7d32;
     color:white;
-    text-align:center;
     border-radius:15px;
-    padding:25px;
+    padding:22px;
+    text-align:center;
+
 }
 
 .buy-title{
+
     font-size:18px;
     font-weight:bold;
+
 }
 
 .buy-box h1{
+
     color:white;
-    font-size:52px;
-    margin:15px 0;
+    font-size:54px;
+    margin:12px 0;
+
 }
 
 .buy-note{
+
     font-size:16px;
+
 }
+
+/* ===========================
+   DECISION
+=========================== */
+
+.decision{
+
+    margin-top:20px;
+    background:#fff8e1;
+    border-left:6px solid #ff9800;
+    border-radius:10px;
+    padding:18px;
+    font-size:20px;
+    font-weight:bold;
+    line-height:1.7;
+    text-align:center;
+
+}
+
+/* ===========================
+   SUMMARY
+=========================== */
 
 .summary{
-    margin-top:25px;
-    background:#f7fff7;
-    border-radius:12px;
-    padding:20px;
-    border:1px solid #d8ead8;
-}
 
-.summary h3{
-    text-align:center;
-    color:#1b5e20;
-    margin-bottom:20px;
+    margin-top:22px;
+    background:#f9fff9;
+    border:1px solid #dcedc8;
+    border-radius:12px;
+    padding:16px;
+
 }
 
 .row{
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:12px 0;
-    border-bottom:1px solid #e5e5e5;
-    font-size:17px;
+
+    border-bottom:1px solid #eeeeee;
+
 }
 
 .row:last-child{
+
     border-bottom:none;
+
 }
 
 .row span:first-child{
+
+    color:#555;
     font-weight:bold;
-    color:#444;
+
 }
 
 .row span:last-child{
+
     color:#1b5e20;
     font-weight:bold;
+
 }
 
-.decision{
-    margin-top:25px;
-    background:#fff8e1;
-    color:#1b5e20;
-    border:2px solid #2e7d32;
-    border-radius:10px;
-    padding:18px;
+/* ===========================
+   DIVIDER
+=========================== */
+
+hr{
+
+    margin:25px 0;
+    border:none;
+    border-top:2px dashed #c8e6c9;
+
+}
+
+/* ===========================
+   STATUS COLORS
+=========================== */
+
+.good{
+    color:#2e7d32;
+}
+
+.warning{
+    color:#ef6c00;
+}
+
+.danger{
+    color:#c62828;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer{
+
+    margin-top:30px;
     text-align:center;
-    font-size:22px;
-    font-weight:bold;
+    color:#777;
+    font-size:14px;
+
 }
 
-@media(max-width:600px){
+/* ===========================
+   MOBILE
+=========================== */
+
+@media screen and (max-width:600px){
 
     body{
-        padding:12px;
+        padding:10px;
     }
 
     .container{
-        padding:15px;
+        padding:16px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    h2{
+        font-size:20px;
     }
 
     .buy-box h1{
-        font-size:44px;
+        font-size:46px;
     }
 
     .decision{
-        font-size:20px;
+        font-size:18px;
     }
 
     .row{
         font-size:16px;
+    }
+
+    button{
+        font-size:18px;
     }
 
 }
