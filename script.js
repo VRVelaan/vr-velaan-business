@@ -1,9 +1,13 @@
 function calculate() {
 
-    // User Inputs
-    let tonRate = Number(document.getElementById("tonRate").value);
-    let weight = Number(document.getElementById("weight").value);
-    let desiredProfit = Number(document.getElementById("profit").value);
+    // ===========================
+    // USER INPUTS
+    // ===========================
+
+    const tonRate = Number(document.getElementById("tonRate").value);
+    const weight = Number(document.getElementById("weight").value);
+    const desiredProfit = Number(document.getElementById("profit").value);
+    const askingPrice = Number(document.getElementById("askingPrice").value);
 
     if (tonRate <= 0 || weight <= 0) {
         alert("Please enter valid values.");
@@ -11,7 +15,7 @@ function calculate() {
     }
 
     // ===========================
-    // Fixed Business Values
+    // FIXED BUSINESS VALUES
     // ===========================
 
     const transportPerTon = 1100;
@@ -21,47 +25,48 @@ function calculate() {
     const wastagePercent = 5;
 
     // ===========================
-    // Calculations
+    // BASIC CALCULATIONS
     // ===========================
 
-    let weightKg = weight / 1000;
+    const weightKg = weight / 1000;
 
-    // Market value of one coconut
-    let marketValue = (tonRate / 1000) * weightKg;
+    const marketValue =
+        (tonRate / 1000) * weightKg;
 
-    // Sale value after 5% wastage
-    let effectiveValue = marketValue * (1 - (wastagePercent / 100));
+    const effectiveValue =
+        marketValue * (1 - wastagePercent / 100);
 
-    // Expenses per coconut
-    let transportCost = (transportPerTon / 1000) * weightKg;
-    let loadingCost = (loadingPerTon / 1000) * weightKg;
-    let miscCost = (miscPerTon / 1000) * weightKg;
-    let labourCost = dehuskingPerPiece;
+    const transportCost =
+        (transportPerTon / 1000) * weightKg;
 
-    // Total expenses
-    let totalExpense =
+    const loadingCost =
+        (loadingPerTon / 1000) * weightKg;
+
+    const miscCost =
+        (miscPerTon / 1000) * weightKg;
+
+    const labourCost =
+        dehuskingPerPiece;
+
+    const totalExpense =
         transportCost +
         loadingCost +
         miscCost +
         labourCost;
 
-    // Profit required per coconut
-    let profitCost =
+    const profitCost =
         (desiredProfit / 1000) * weightKg;
 
-    // Recommended buying price
     let buyPrice =
         effectiveValue -
         totalExpense -
         profitCost;
 
-    // Never show negative buying price
     if (buyPrice < 0) {
         buyPrice = 0;
     }
-
-    // ===========================
-    // Display Results
+        // ===========================
+    // DISPLAY RESULTS
     // ===========================
 
     document.getElementById("marketValue").innerHTML =
@@ -91,20 +96,156 @@ function calculate() {
     document.getElementById("buyPrice").innerHTML =
         "₹" + buyPrice.toFixed(2);
 
-    // Decision
+    // ===========================
+    // NEGOTIATION CALCULATION
+    // ===========================
 
-    let decision = "";
+    if (askingPrice > 0) {
 
-    if (buyPrice >= 16) {
-        decision = "🟢 BUY BELOW ₹" + buyPrice.toFixed(2);
-    }
-    else if (buyPrice >= 15) {
-        decision = "🟡 NEGOTIATE AROUND ₹" + buyPrice.toFixed(2);
-    }
+        const actualProfitPerPiece =
+            effectiveValue -
+            totalExpense -
+            askingPrice;
+
+        const coconutsPerTon =
+            1000 / weightKg;
+
+        const actualProfitPerTon =
+            actualProfitPerPiece * coconutsPerTon;
+
+        const difference =
+            askingPrice - buyPrice;
+
+        document.getElementById("farmerPrice").innerHTML =
+            "₹" + askingPrice.toFixed(2);
+
+        if (actualProfitPerTon >= 0) {
+
+            document.getElementById("actualProfit").innerHTML =
+                "₹" + actualProfitPerTon.toFixed(0);
+
+        } else {
+
+            document.getElementById("actualProfit").innerHTML =
+                "-₹" + Math.abs(actualProfitPerTon).toFixed(0);
+
+        }
+
+        let decision = "";
+                // ===========================
+        // DECISION ENGINE
+        // ===========================
+
+        if (askingPrice <= buyPrice) {
+
+            decision =
+                "🟢 <b>BUY</b><br><br>" +
+                "Farmer Asking : ₹" + askingPrice.toFixed(2) + "<br>" +
+                "Recommended Price : ₹" + buyPrice.toFixed(2) + "<br>" +
+                "Expected Profit : ₹" + actualProfitPerTon.toFixed(0) + " / Ton<br><br>" +
+                "✅ Good purchase. You will achieve your target profit.";
+
+        }
+        else if (actualProfitPerTon > 0) {
+
+            let suggestedOffer = buyPrice - 0.30;
+
+            if (suggestedOffer < 0) {
+                suggestedOffer = 0;
+            }
+
+            decision =
+                "🟡 <b>NEGOTIATE</b><br><br>" +
+
+                "Farmer Asking : ₹" + askingPrice.toFixed(2) + "<br>" +
+
+                "Start Negotiation : <b>₹" +
+                suggestedOffer.toFixed(2) +
+                "</b><br>" +
+
+                "Target Settlement : <b>₹" +
+                buyPrice.toFixed(2) +
+                "</b><br>" +
+
+                "Reduce by : <b>₹" +
+                difference.toFixed(2) +
+                "</b> per coconut.<br><br>" +
+
+                "If you pay ₹" +
+                askingPrice.toFixed(2) +
+                ", expected profit will be <b>₹" +
+                actualProfitPerTon.toFixed(0) +
+                " / Ton</b>.";
+
+        }
+        else {
+
+            let suggestedOffer = buyPrice - 0.30;
+
+            if (suggestedOffer < 0) {
+                suggestedOffer = 0;
+            }
+
+            decision =
+                "🔴 <b>DON'T BUY</b><br><br>" +
+
+                "Farmer Asking : ₹" +
+                askingPrice.toFixed(2) +
+                "<br>" +
+
+                "Start Negotiation : <b>₹" +
+                suggestedOffer.toFixed(2) +
+                "</b><br>" +
+
+                "Maximum Safe Price : <b>₹" +
+                buyPrice.toFixed(2) +
+                "</b><br>" +
+
+                "Need to reduce by <b>₹" +
+                difference.toFixed(2) +
+                "</b> per coconut.<br><br>" +
+
+                "At ₹" +
+                askingPrice.toFixed(2) +
+                " you will incur a loss of <b>₹" +
+                Math.abs(actualProfitPerTon).toFixed(0) +
+                " / Ton</b>.";
+
+        }
+
+        document.getElementById("decision").innerHTML = decision;
+            }
     else {
-        decision = "🔴 BUY ONLY BELOW ₹" + buyPrice.toFixed(2);
+
+        document.getElementById("farmerPrice").innerHTML = "-";
+        document.getElementById("actualProfit").innerHTML = "-";
+
+        document.getElementById("decision").innerHTML =
+            "Enter the farmer's asking price to get a negotiation recommendation.";
+
     }
 
-    document.getElementById("decision").innerHTML = decision;
+    // ===========================
+    // NEGOTIATION GUIDE
+    // ===========================
+
+    let startOffer = buyPrice - 0.30;
+
+    if (startOffer < 0) {
+        startOffer = 0;
+    }
+
+    document.getElementById("decision").innerHTML +=
+        "<hr>" +
+        "<b>Negotiation Guide</b><br><br>" +
+
+        "💬 Start From : <b>₹" + startOffer.toFixed(2) + "</b><br>" +
+
+        "🎯 Target Settlement : <b>₹" + buyPrice.toFixed(2) + "</b><br>" +
+
+        "🚫 Never Pay Above : <b>₹" + buyPrice.toFixed(2) + "</b><br><br>" +
+
+        "✔️ Paying below this price increases your profit.<br>" +
+        "❌ Paying above this price reduces your target profit.";
 
 }
