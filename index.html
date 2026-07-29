@@ -2,108 +2,157 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR Velaan Procurement Decision</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VR Velaan Procurement Assistant</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>🥥 VR Velaan</h1>
-    <h2>Procurement Decision</h2>
+<h1>🥥 VR Velaan</h1>
+<h2>Procurement Assistant</h2>
 
-    <label>Kangeyam Husked Coconut Rate (₹/Ton)</label>
-    <input type="number" id="tonRate" placeholder="Enter Today's Kangeyam Rate">
+<label>Today's Kangeyam Husked Coconut Rate (₹ / Ton)</label>
+<input
+type="number"
+id="tonRate"
+placeholder="Example : 49000">
 
-    <label>Average Coconut Weight (grams)</label>
-    <input type="number" id="weight" value="390">
+<label>Average Coconut Weight (grams)</label>
+<input
+type="number"
+id="weight"
+value="390">
 
-    <label>Desired Profit (₹/Ton)</label>
-    <input type="number" id="profit" value="2000">
+<label>Target Profit (₹ / Ton)</label>
+<input
+type="number"
+id="profit"
+value="2000">
 
-    <label>Farmer Asking Price (₹ / Coconut)</label>
-    <input type="number" id="askingPrice" placeholder="Example: 18.00" step="0.01">
+<label>Farmer Asking Price (₹ / Coconut)</label>
+<input
+type="number"
+id="askingPrice"
+placeholder="Example : 17.50"
+step="0.01">
 
-    <button onclick="calculate()">Calculate</button>
+<button onclick="calculate()">
+CALCULATE
+</button>
 
-    <div class="result">
+<div class="buy-box">
 
-        <div class="buy-box">
-            <p class="buy-title">✅ RECOMMENDED BUYING PRICE</p>
-            <h1 id="buyPrice">₹0.00</h1>
-            <p class="buy-note">Maximum recommended price per coconut</p>
-        </div>
+<p class="buy-title">
+✅ RECOMMENDED BUYING PRICE
+</p>
 
-        <div class="summary">
+<h1 id="buyPrice">
+₹0.00
+</h1>
 
-            <h3>Calculation Summary</h3>
+<p class="buy-note">
+Maximum buying price per coconut
+</p>
 
-            <div class="row">
-                <span>Market Value</span>
-                <span id="marketValue">₹0.00</span>
-            </div>
+</div>
 
-            <div class="row">
-                <span>After 5% Wastage</span>
-                <span id="effectiveValue">₹0.00</span>
-            </div>
+<div class="decision" id="decision">
 
-            <div class="row">
-                <span>Transport</span>
-                <span id="transportCost">₹0.00</span>
-            </div>
+Enter today's Kangeyam rate and press Calculate.
 
-            <div class="row">
-                <span>Loading</span>
-                <span id="loadingCost">₹0.00</span>
-            </div>
+</div>
 
-            <div class="row">
-                <span>Miscellaneous</span>
-                <span id="miscCost">₹0.00</span>
-            </div>
+<div class="summary">
 
-            <div class="row">
-                <span>Dehusking Labour</span>
-                <span id="labourCost">₹0.00</span>
-            </div>
+<h3>Negotiation Assistant</h3>
 
-            <div class="row">
-                <span>Total Expenses</span>
-                <span id="totalExpense">₹0.00</span>
-            </div>
+<div class="row">
+<span>Farmer Asking</span>
+<span id="farmerPrice">-</span>
+</div>
 
-            <div class="row">
-                <span>Target Profit</span>
-                <span id="profitCost">₹0.00</span>
-            </div>
+<div class="row">
+<span>Expected Profit / Ton</span>
+<span id="actualProfit">-</span>
+</div>
 
-        </div>
+</div>
 
-        <div class="summary">
+<div class="summary">
 
-            <h3>Negotiation Result</h3>
+<h3>Calculation Summary</h3>
 
-            <div class="row">
-                <span>Farmer Asking Price</span>
-                <span id="farmerPrice">₹0.00</span>
-            </div>
+<div class="row">
+<span>Market Value</span>
+<span id="marketValue">₹0.00</span>
+</div>
 
-            <div class="row">
-                <span>Expected Profit / Ton</span>
-                <span id="actualProfit">₹0</span>
-            </div>
+<div class="row">
+<span>After 5% Wastage</span>
+<span id="effectiveValue">₹0.00</span>
+</div>
 
-        </div>
+<div class="row">
+<span>Transport</span>
+<span id="transportCost">₹0.00</span>
+</div>
 
-        <div class="decision" id="decision">
-            Enter values and press Calculate
-        </div>
+<div class="row">
+<span>Loading</span>
+<span id="loadingCost">₹0.00</span>
+</div>
 
-    </div>
+<div class="row">
+<span>Misc Expense</span>
+<span id="miscCost">₹0.00</span>
+</div>
+
+<div class="row">
+<span>Dehusking Labour</span>
+<span id="labourCost">₹0.00</span>
+</div>
+
+<div class="row">
+<span>Total Expenses</span>
+<span id="totalExpense">₹0.00</span>
+</div>
+
+<div class="row">
+<span>Target Profit</span>
+<span id="profitCost">₹0.00</span>
+</div>
+
+</div>
+
+<hr>
+
+<h3>Negotiation Guide</h3>
+
+<div class="summary">
+
+<div class="row">
+<span>Start Negotiation</span>
+<span id="startOffer">₹0.00</span>
+</div>
+
+<div class="row">
+<span>Counter Offer</span>
+<span id="counterOffer">₹0.00</span>
+</div>
+
+<div class="row">
+<span>Maximum Settle Price</span>
+<span id="maxPrice">₹0.00</span>
+</div>
+
+</div>
 
 </div>
 
