@@ -1,65 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VR Velaan Procurement Decision</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Velaan Procurement Decision</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🥥 VR Velaan</h1>
-<h2>Procurement Decision</h2>
+    <h1>🥥 VR Velaan</h1>
+    <h2>Procurement Decision</h2>
 
-<label>Kangeyam Husked Coconut Rate (₹/Ton)</label>
-<input type="number" id="tonRate" placeholder="Today's Rate">
+    <label>Kangeyam Husked Coconut Rate (₹/Ton)</label>
+    <input type="number" id="tonRate" placeholder="Enter Today's Kangeyam Rate">
 
-<label>Average Coconut Weight (grams)</label>
-<input type="number" id="weight" value="390">
+    <label>Average Coconut Weight (grams)</label>
+    <input type="number" id="weight" value="390">
 
-<label>Desired Profit (₹/Ton)</label>
-<input type="number" id="profit" value="2000">
+    <label>Desired Profit (₹/Ton)</label>
+    <input type="number" id="profit" value="2000">
 
-<button onclick="calculate()">Calculate</button>
+    <button onclick="calculate()">Calculate</button>
 
-<div class="result">
+    <div class="result">
 
-<h3>Results</h3>
+        <div class="buy-box">
 
-<p>Market Value / Coconut</p>
-<h2 id="marketValue">₹0.00</h2>
+            <p class="buy-title">
+                ✅ RECOMMENDED BUYING PRICE
+            </p>
 
-<p>Effective Sale Value (After 5% Wastage)</p>
-<h2 id="effectiveValue">₹0.00</h2>
+            <h1 id="buyPrice">
+                ₹0.00
+            </h1>
 
-<p>Transport</p>
-<h2 id="transportCost">₹0.00</h2>
+            <p class="buy-note">
+                Pay this price or below per coconut
+            </p>
 
-<p>Loading</p>
-<h2 id="loadingCost">₹0.00</h2>
+        </div>
 
-<p>Miscellaneous</p>
-<h2 id="miscCost">₹0.00</h2>
+        <div class="summary">
 
-<p>Dehusking Labour</p>
-<h2 id="labourCost">₹0.00</h2>
+            <h3>Today's Summary</h3>
 
-<p>Profit Required</p>
-<h2 id="profitCost">₹0.00</h2>
+            <div class="row">
+                <span>Market Value</span>
+                <span id="marketValue">₹0.00</span>
+            </div>
 
-<hr>
+            <div class="row">
+                <span>Sale Value (After 5% Wastage)</span>
+                <span id="effectiveValue">₹0.00</span>
+            </div>
 
-<h3>✅ Recommended Buying Price</h3>
-<h1 id="buyPrice" style="color:green;">₹0.00</h1>
+            <div class="row">
+                <span>Transport</span>
+                <span id="transportCost">₹0.00</span>
+            </div>
 
-</div>
+            <div class="row">
+                <span>Loading</span>
+                <span id="loadingCost">₹0.00</span>
+            </div>
+
+            <div class="row">
+                <span>Miscellaneous</span>
+                <span id="miscCost">₹0.00</span>
+            </div>
+
+            <div class="row">
+                <span>Dehusking Labour</span>
+                <span id="labourCost">₹0.00</span>
+            </div>
+
+            <div class="row">
+                <span>Total Expenses</span>
+                <span id="totalExpense">₹0.00</span>
+            </div>
+
+            <div class="row">
+                <span>Target Profit</span>
+                <span id="profitCost">₹0.00</span>
+            </div>
+
+        </div>
+
+        <div class="decision" id="decision">
+            🟢 Enter today's rate and press Calculate
+        </div>
+
+    </div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
