@@ -15,10 +15,13 @@
 <h2>Procurement Decision</h2>
 
 <label>Kangeyam Husked Coconut Rate (₹/Ton)</label>
-<input type="number" id="tonRate" placeholder="Enter today's rate">
+<input type="number" id="tonRate" placeholder="Today's Rate">
 
 <label>Average Coconut Weight (grams)</label>
 <input type="number" id="weight" value="390">
+
+<label>Desired Profit (₹/Ton)</label>
+<input type="number" id="profit" value="2000">
 
 <button onclick="calculate()">Calculate</button>
 
@@ -29,21 +32,27 @@
 <p>Market Value / Coconut</p>
 <h2 id="marketValue">₹0.00</h2>
 
-<p>Transport Cost / Coconut</p>
+<p>Effective Sale Value (After 5% Wastage)</p>
+<h2 id="effectiveValue">₹0.00</h2>
+
+<p>Transport</p>
 <h2 id="transportCost">₹0.00</h2>
 
-<p>Loading Cost / Coconut</p>
+<p>Loading</p>
 <h2 id="loadingCost">₹0.00</h2>
 
-<p>Misc Cost / Coconut</p>
+<p>Miscellaneous</p>
 <h2 id="miscCost">₹0.00</h2>
 
-<p>Dehusking Labour / Coconut</p>
+<p>Dehusking Labour</p>
 <h2 id="labourCost">₹0.00</h2>
+
+<p>Profit Required</p>
+<h2 id="profitCost">₹0.00</h2>
 
 <hr>
 
-<p><b>Maximum Buying Price (No Profit)</b></p>
+<h3>✅ Recommended Buying Price</h3>
 <h1 id="buyPrice" style="color:green;">₹0.00</h1>
 
 </div>
